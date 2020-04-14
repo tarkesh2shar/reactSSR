@@ -1,0 +1,15 @@
+{
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.autoClosingBrackets": "always",
+	"editor.formatOnSave": true,
+	"editor.autoClosingQuotes": "always",
+	"eslint.enable": false,
+	"eslint.format.enable": true,
+	"editor.tabSize": 2,
+	"emmet.includeLanguages": {
+		"javascript": "javascriptreact"
+	}
+}
