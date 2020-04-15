@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getSampleData } from '../../actions/sample/sample'
+import { Helmet } from 'react-helmet'
+
 function Home(props) {
 	useEffect(() => {
 		props.getSampleData()
@@ -20,6 +22,17 @@ function Home(props) {
 	}
 	return (
 		<div>
+			<Helmet>
+				<meta property='og:title' content='How to Become an SEO Expert (8 Steps)' />
+				<meta
+					property='og:description'
+					content='Get from SEO newbie to SEO pro in 8 simple steps.'
+				/>
+				<meta
+					property='og:image'
+					content='https://ahrefs.com/blog/wp-content/uploads/2019/12/fb-how-to-become-an-seo-expert.png'
+				/>
+			</Helmet>
 			This is a basic Component
 			<p>The data is fetched on the server and a full fledged html is send asap</p>
 			<button onClick={e => alert('clicked on a button')}>Click me</button>
