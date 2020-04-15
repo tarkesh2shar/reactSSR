@@ -1,4 +1,5 @@
 import Home from '../client/pages/Home'
+import NotFound from '../client/pages/notFoundPage'
 export default [
 	{
 		path: '/',
@@ -8,5 +9,8 @@ export default [
 	{
 		path: '/home',
 		component: () => 'This is a home from react-router-config',
+	},
+	{
+		...NotFound,
 	},
 ]
