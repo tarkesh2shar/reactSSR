@@ -8,7 +8,7 @@
 		"clean": "rimraf public",
 		"dev:server": "nodemon --watch build --exec node build/bundle.js",
 		"dev:buildServer": "webpack --config webpack.server.js --watch",
-		"dev:build-client": "npm run clean && webpack --config webpack.client.js --watch"
+		"dev:buildClient": "npm run clean && webpack --config webpack.client.js --watch"
 	},
 	"keywords": [
 		"reactWebpackSSR"

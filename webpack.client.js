@@ -2,9 +2,6 @@ const miniCssExtract = require('mini-css-extract-plugin')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
 const path = require('path')
-
-const ASSET_PATH = process.env.ASSET_PATH || '/'
-
 module.exports = {
 	entry: ['babel-polyfill', './app/client/index.js'],
 	mode: 'production',
@@ -75,12 +72,8 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
 		new miniCssExtract({
 			filename: '[name].css',
-		}),
-		new webpack.DefinePlugin({
-			'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
 		}),
 		new webpack.LoaderOptionsPlugin({
 			options: {
@@ -91,13 +84,6 @@ module.exports = {
 	optimization: {
 		splitChunks: {
 			cacheGroups: {
-				styles: {
-					name: 'styles',
-					test: /\.css$/,
-					chunks: 'all',
-					enforce: true,
-				},
-
 				vendor: {
 					test: /[\\/]node_modules[\\/]/,
 					chunks: 'all',

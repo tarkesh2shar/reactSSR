@@ -17,11 +17,14 @@ export default (req, store, context) => {
 	)
 	const helmet = Helmet.renderStatic()
 	return `
-	    <head>${helmet.meta.toString()}</head>
+			<head>${helmet.meta.toString()}
+			<link href="main.css" rel="stylesheet">
+			</head>
 			<div id="root">${content}</div>
 			<script>
 			window.INITIAL_STATE= ${serialize(store.getState())}
 			</script>
-      <script src="bundle.js"></script>
+			<script src="main.bundle.js"></script>
+			<script src="vendor.bundle.js"></script>
   `
 }

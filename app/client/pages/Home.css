@@ -1,0 +1,12 @@
+.home__Container {
+	height: 100vh;
+	width: 100%;
+	background: url('../../../assets/trent-szmolnik-BA50zDj2W98-unsplash.jpg');
+}
+
+.notFound {
+	height: 100vh;
+	width: 100%;
+	color: white;
+	background-color: tomato;
+}
