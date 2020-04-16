@@ -8,10 +8,9 @@ const ASSET_PATH = process.env.ASSET_PATH || '/'
 module.exports = {
 	entry: ['babel-polyfill', './app/client/index.js'],
 	mode: 'production',
-	devtool: 'source-map',
 	output: {
 		path: path.resolve(__dirname, 'public'),
-		filename: 'bundle.js',
+		filename: '[name].bundle.js',
 		publicPath: './',
 	},
 	module: {
@@ -83,7 +82,6 @@ module.exports = {
 		new webpack.DefinePlugin({
 			'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
 		}),
-		new webpack.SourceMapDevToolPlugin({}),
 		new webpack.LoaderOptionsPlugin({
 			options: {
 				postcss: [autoprefixer()],
@@ -100,17 +98,11 @@ module.exports = {
 					enforce: true,
 				},
 
-				// vendor: {
-				// 	test: /[\\/]node_modules[\\/]/,
-				// 	name(module) {
-				// 		const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
-				// 		// npm package names are URL-safe, but some servers don't like @ symbols
-				// 		return `npm.${packageName.replace('@', '')}`
-				// 	},
-				// 	chunks: 'all',
-				// 	maxInitialRequests: 1,
-				// 	minSize: 1,
-				// },
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					chunks: 'all',
+					name: 'vendor',
+				},
 			},
 		},
 	},
