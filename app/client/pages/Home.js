@@ -2,6 +2,12 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getSampleData } from '../../actions/sample/sample'
 import { Helmet } from 'react-helmet'
+import './Home.css'
+import './Home.scss'
+
+// Image test //
+import Image1 from '../../../assets/item1.jpg'
+import Image2 from '../../../assets/item2.jpg'
 
 function Home(props) {
 	useEffect(() => {
@@ -21,7 +27,7 @@ function Home(props) {
 		})
 	}
 	return (
-		<div>
+		<div className='home__Container'>
 			<Helmet>
 				<meta property='og:title' content='How to Become an SEO Expert (8 Steps)' />
 				<meta
@@ -36,7 +42,12 @@ function Home(props) {
 			This is a basic Component
 			<p>The data is fetched on the server and a full fledged html is send asap</p>
 			<button onClick={e => alert('clicked on a button')}>Click me</button>
-			{renderListOfSampleData()}
+			{/* {renderListOfSampleData()} */}
+			<div className='image__container'>
+				<img src={Image1} alt='Image 1' />
+				<img src={Image2} alt='Image 2' />
+				<img src={Image1} alt='Image 3' />
+			</div>
 		</div>
 	)
 }
