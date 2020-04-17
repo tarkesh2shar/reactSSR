@@ -8,7 +8,10 @@
 		"clean": "rimraf public",
 		"dev:server": "nodemon --watch build --exec node build/bundle.js",
 		"dev:buildServer": "webpack --config webpack.server.js --watch",
-		"dev:buildClient": "npm run clean && webpack --config webpack.client.js --watch"
+		"dev:buildClient": "npm run clean && webpack --config webpack.client.js --watch",
+		"clean:server": "rimraf build/images",
+		"prod": "webpack --config webpack.server.js && npm run clean:server && npm run clean && webpack --config webpack.client.js",
+		"start": "node build/bundle.js"
 	},
 	"keywords": [
 		"reactWebpackSSR"
@@ -42,10 +45,12 @@
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-react": "^6.24.1",
+		"copy-webpack-plugin": "^5.1.1",
 		"css-hot-loader": "^1.4.4",
 		"css-loader": "^3.2.0",
-		"file-loader": "^4.2.0",
+		"file-loader": "^4.3.0",
 		"html-webpack-plugin": "^3.2.0",
+		"ignore-loader": "^0.1.2",
 		"image-webpack-loader": "^5.0.0",
 		"mini-css-extract-plugin": "^0.8.0",
 		"node-sass": "^4.13.1",

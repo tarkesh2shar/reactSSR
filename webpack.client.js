@@ -22,8 +22,10 @@ module.exports = {
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'url-loader',
-						options: { limit: 40000 },
+						loader: 'file-loader',
+						options: {
+							outputPath: 'images',
+						},
 					},
 					'image-webpack-loader',
 				],
@@ -60,6 +62,9 @@ module.exports = {
 					},
 					{
 						loader: 'css-loader',
+						options: {
+							url: true,
+						},
 					},
 					{
 						loader: 'postcss-loader',
