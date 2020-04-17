@@ -46,7 +46,7 @@ function Home(props) {
 			<div className='image__container'>
 				<img src={Image1} alt='Image 1' />
 				<img src={Image2} alt='Image 2' />
-				<img src={Image1} alt='Image 3' />
+				<img src={Image2} alt='Image 3' />
 			</div>
 		</div>
 	)

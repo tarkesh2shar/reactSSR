@@ -1,8 +1,5 @@
 const path = require('path')
 const webpackNodeExternals = require('webpack-node-externals')
-const miniCssExtract = require('mini-css-extract-plugin')
-const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
 module.exports = {
 	entry: ['babel-polyfill', './index.js'],
 	target: 'node',
@@ -10,7 +7,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'build'),
 		filename: 'bundle.js',
-		// publicPath: ""
+		publicPath: '/',
 	},
 	externals: [webpackNodeExternals()],
 	module: {
@@ -23,28 +20,17 @@ module.exports = {
 			{
 				test: /\.css$/,
 				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'css-hot-loader',
-					},
-					{
-						loader: miniCssExtract.loader,
-					},
-					{
-						loader: 'css-loader',
-					},
-					{
-						loader: 'postcss-loader',
-					},
-				],
+				use: 'ignore-loader',
 			},
 			{
 				test: /\.(jpe?g|png|gif|svg)$/,
 				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'url-loader',
-						options: { limit: 40000 },
+						loader: 'file-loader',
+						options: {
+							outputPath: 'images',
+						},
 					},
 					'image-webpack-loader',
 				],
@@ -53,34 +39,8 @@ module.exports = {
 			{
 				test: /\.s[ac]ss$/i,
 				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'css-hot-loader',
-					},
-					{
-						loader: miniCssExtract.loader,
-					},
-					{
-						loader: 'css-loader',
-					},
-					{
-						loader: 'postcss-loader',
-					},
-					{
-						loader: 'sass-loader',
-					},
-				],
+				use: 'ignore-loader',
 			},
 		],
 	},
-	plugins: [
-		new miniCssExtract({
-			filename: '[name].css',
-		}),
-		new webpack.LoaderOptionsPlugin({
-			options: {
-				postcss: [autoprefixer()],
-			},
-		}),
-	],
 }
