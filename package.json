@@ -4,13 +4,13 @@
 	"description": "A webpack based react server side rendering server",
 	"main": "index.js",
 	"scripts": {
-		"dev": "npm-run-all --parallel dev:*",
 		"clean": "rimraf public",
+		"clean:server": "rimraf build/images",
 		"dev:server": "nodemon --watch build --exec node build/bundle.js",
 		"dev:buildServer": "webpack --config webpack.server.js --watch",
 		"dev:buildClient": "npm run clean && webpack --config webpack.client.js --watch",
-		"clean:server": "rimraf build/images",
-		"prod": "webpack --config webpack.server.js && npm run clean:server && npm run clean && webpack --config webpack.client.js",
+		"dev": "npm-run-all --parallel dev:*",
+		"prod": "webpack --config webpack.server.js && npm run clean:server && npm run clean && webpack --config webpack.client.js && node build/bundle.js",
 		"start": "node build/bundle.js"
 	},
 	"keywords": [
