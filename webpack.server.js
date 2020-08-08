@@ -32,6 +32,7 @@ module.exports = {
 							outputPath: 'images',
 						},
 					},
+					//minify image//
 					'image-webpack-loader',
 				],
 			},
