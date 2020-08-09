@@ -6,9 +6,32 @@ import Routes from './app/routes/routes'
 import createStore from './app/helpers/serverStore'
 import env from 'dotenv'
 import proxy from 'express-http-proxy'
+require('marko/browser-refresh').enable()
+require('lasso/browser-refresh').enable(
+	'*.marko *.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg',
+)
 env.config()
-app.use(express.static('public'))
 
+//////////////////
+// var patterns = '*.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg'
+
+// require('browser-refresh-client')
+// 	.enableSpecialReload(patterns, { autoRefresh: false })
+// 	.onFileModified(function (path) {
+// 		// Code to handle the file modification goes here.
+
+// 		// Now trigger a refresh when we are ready:
+// 		if (isImage(path)) {
+// 			browserRefreshClient.refreshImages()
+// 		} else if (isStyle(path)) {
+// 			browserRefreshClient.refreshStyles()
+// 		} else {
+// 			browserRefreshClient.refreshPage()
+// 		}
+// 	})
+
+//////////////////
+app.use(express.static('public'))
 app.use('/api', proxy(process.env.API_SERVER))
 app.get('*', (req, res) => {
 	const store = createStore(req)
@@ -40,4 +63,7 @@ app.get('*', (req, res) => {
 })
 app.listen(4000, () => {
 	console.log('Listening at port 4000')
+	if (process.send) {
+		process.send({ event: 'online' })
+	}
 })
