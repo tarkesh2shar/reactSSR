@@ -26,6 +26,10 @@ export default (req, store, context) => {
 			</script>
 			<script src="main.bundle.js"></script>
 			<script src="vendor.bundle.js"></script>
-			<script src="${process.env.BROWSER_REFRESH_URL}"></script>
+			${
+				process.env.BROWSER_REFRESH_URL
+					? `<script src="${process.env.BROWSER_REFRESH_URL}"></script>`
+					: ''
+			}
   `
 }

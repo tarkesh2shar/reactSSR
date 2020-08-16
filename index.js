@@ -7,30 +7,11 @@ import createStore from './app/helpers/serverStore'
 import env from 'dotenv'
 import proxy from 'express-http-proxy'
 require('marko/browser-refresh').enable()
+// require('marko/hot-reload').enable()
 require('lasso/browser-refresh').enable(
 	'*.marko *.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg',
 )
 env.config()
-
-//////////////////
-// var patterns = '*.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg'
-
-// require('browser-refresh-client')
-// 	.enableSpecialReload(patterns, { autoRefresh: false })
-// 	.onFileModified(function (path) {
-// 		// Code to handle the file modification goes here.
-
-// 		// Now trigger a refresh when we are ready:
-// 		if (isImage(path)) {
-// 			browserRefreshClient.refreshImages()
-// 		} else if (isStyle(path)) {
-// 			browserRefreshClient.refreshStyles()
-// 		} else {
-// 			browserRefreshClient.refreshPage()
-// 		}
-// 	})
-
-//////////////////
 app.use(express.static('public'))
 app.use('/api', proxy(process.env.API_SERVER))
 app.get('*', (req, res) => {
